@@ -98,4 +98,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackPositionOffset: {x: 0.5, y: 0}
-  _attack: {fileID: 5400871896861028315, guid: f969d15fbc1e7a843932ef2e3de1dabe, type: 3}

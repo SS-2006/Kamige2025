@@ -58,6 +58,8 @@ public abstract class WeaponBase : MonoBehaviour
     }
 
     public WEAPON_TYPE GetWeaponType() { return _type; }
+    public int GetWeaponHP() { return _hp; }
+    public int GetWeaponDefaultHP() { return _defaultHP; }
     public virtual void Attack()
     {
         if (_attack == null) 

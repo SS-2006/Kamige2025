@@ -72,6 +72,21 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Die()
     {
+        int ramdom = (int)Random.Range(0.0f, 2.0f);
+        switch(ramdom)
+        {
+            case 0:
+                {
+                    Instantiate(Resources.Load("Prefab/ItemSword"), transform.position, transform.rotation);
+                    break;
+                }
+            case 1:
+                {
+                    Instantiate(Resources.Load("Prefab/ItemHammer"), transform.position, transform.rotation);
+                    break;
+                }
+        }
+
         Destroy(gameObject);
     }
 
@@ -89,7 +104,16 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    //protected virtual void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        // クラス参照せず "TakeDamage" を呼ぶ（存在しなくてもエラーにしない）
+    //        collision.gameObject.SendMessage("TakeDamage", 1, SendMessageOptions.DontRequireReceiver);
+    //    }
+    //}
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -98,5 +122,12 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            AttackDamage atkDmg = collision.gameObject.GetComponent<AttackDamage>();
+            TakeDamage(atkDmg.GetAttackPower());
+        }
+    }
 }

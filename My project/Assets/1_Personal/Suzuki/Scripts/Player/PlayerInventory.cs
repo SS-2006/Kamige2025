@@ -6,12 +6,12 @@ public class PlayerInventory : MonoBehaviour
 {
     private WEAPON_TYPE _weapon = WEAPON_TYPE.NONE;
     private ARMOR_TYPE _armor = ARMOR_TYPE.NONE;
-    private List<SKILL_TYPE> _skillList;
-    [SerializeField] protected Vector2 _weaponPositionOffset = new Vector2(1.0f, 1.0f);
+    private List<SKILL_TYPE> _skillList = new List<SKILL_TYPE>();
+    [SerializeField] protected Vector2 _weaponPositionOffset = new Vector2(0.1f, 0.0f);
 
     void Start()
     {
-        int ramdom = (int)Random.Range(0.0f, 1.0f);
+        int ramdom = (int)Random.Range(0.0f, 2.0f);
         switch(ramdom)
         {
             case 0:
@@ -27,23 +27,9 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        GameObject obj = collision.gameObject;
-        if (obj.tag == "Weapon")
-        {
-            WeaponBase wpn = obj.GetComponent<WeaponBase>();
-            if (wpn == null) {
-                AddWeapon(wpn.GetWeaponType());
-            }
-        }
-        else if (obj.tag == "Armor")
-        {
-            ArmorBase amr = obj.GetComponent<ArmorBase>();
-            if (amr == null) { 
-                AddArmor(amr.GetArmorType()); 
-            }
-        }
+        
     }
 
     public WEAPON_TYPE GetWeaponType() { return _weapon; }
@@ -51,31 +37,33 @@ public class PlayerInventory : MonoBehaviour
     public List<SKILL_TYPE> GetSkillList() { return _skillList; }
     public Vector3 GetWeaponPosition() 
     { 
-        return new Vector3(transform.position.x + _weaponPositionOffset.x, 
-                           transform.position.y + _weaponPositionOffset.y,
-                           transform.position.z); 
+        return _weaponPositionOffset;
     }
 
-    public void AddWeapon(WEAPON_TYPE wpnType) 
+    public bool AddWeapon(WEAPON_TYPE wpnType) 
     {
         _weapon = wpnType;
         switch(_weapon)
         {
             case WEAPON_TYPE.TYPE_1:
                 {
-                    GameObject wpnObj = Instantiate((GameObject)Resources.Load("Prefab/Sword"));
-                    wpnObj.GetComponent<Transform>().position = GetWeaponPosition();
+                    GameObject wpnObj = Instantiate((GameObject)Resources.Load("Prefab/Sword"), Vector3.zero, Quaternion.identity, this.transform);
                     break;
                 }
             case WEAPON_TYPE.TYPE_2:
                 {
-                    GameObject wpnObj = Instantiate((GameObject)Resources.Load("Prefab/Hammer"));
-                    wpnObj.GetComponent<Transform>().position = GetWeaponPosition();
+                    GameObject wpnObj = Instantiate((GameObject)Resources.Load("Prefab/Hammer"), Vector3.zero, Quaternion.identity, this.transform);
                     break;
                 }
+            case WEAPON_TYPE.NONE:
+                {
+                    return false;
+                }
         }
+
+        return true;
     }
-    public void AddArmor(ARMOR_TYPE amrType) 
+    public bool AddArmor(ARMOR_TYPE amrType) 
     { 
         _armor = amrType;
         switch (_armor)
@@ -90,7 +78,13 @@ public class PlayerInventory : MonoBehaviour
                     
                     break;
                 }
+            case ARMOR_TYPE.NONE:
+                {
+                    return false;
+                }
         }
+
+        return true;
     }
     public void AddSkill(SKILL_TYPE sklType)
     { 
@@ -100,24 +94,12 @@ public class PlayerInventory : MonoBehaviour
             case SKILL_TYPE.TYPE_1:
                 {
                     //this.AddComponent<>();
-                    break;
-                }
-            case SKILL_TYPE.TYPE_2:
-                {
-                    //this.AddComponent<>();
-                    break;
-                }
-            case SKILL_TYPE.TYPE_3:
-                {
-                    //this.AddComponent<>();
-                    break;
-                }
-            case SKILL_TYPE.TYPE_4:
-                {
-                    //this.AddComponent<>();
+                    Debug.Log("çUåÇóÕëùâ¡ÉXÉLÉãéÊìæ");
                     break;
                 }
         }
+
+        
     }
 
     public void RemoveWeapon()

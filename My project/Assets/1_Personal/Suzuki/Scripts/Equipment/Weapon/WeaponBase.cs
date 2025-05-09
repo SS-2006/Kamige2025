@@ -37,7 +37,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     void Update()
     {
-        transform.position = _inventory.GetWeaponPosition();
+        transform.localPosition = _inventory.GetWeaponPosition();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -52,6 +52,7 @@ public abstract class WeaponBase : MonoBehaviour
             {
                 Destroy(gameObject);
                 _inventory.RemoveWeapon();
+                _inventory.AddSkill(SKILL_TYPE.TYPE_1);
             }
         }
     }

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b6d441f2b52744ea6b56da04e8a33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  timerText: {fileID: 1336802276}
 --- !u!4 &41991355
 Transform:
   m_ObjectHideFlags: 0

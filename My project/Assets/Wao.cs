@@ -5,7 +5,6 @@ using UnityEngine;
 public class Wao : MonoBehaviour
 {
     float seconds;
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -18,7 +17,7 @@ public class Wao : MonoBehaviour
         if (seconds >= 2)
         {
             seconds = 0;
-            Debug.Log("2�b��Ɏ��s���ꂽ");
+            Debug.Log("2•bŒã‚ÉŽÀs‚³‚ê‚½");
         }
     }
 }

@@ -11,20 +11,22 @@ public class PlayerInventory : MonoBehaviour
 
     void Start()
     {
-        int ramdom = (int)Random.Range(0.0f, 2.0f);
-        switch(ramdom)
-        {
-            case 0:
-                {
-                    AddWeapon(WEAPON_TYPE.TYPE_1);
-                    break;
-                }
-            case 1:
-                {
-                    AddWeapon(WEAPON_TYPE.TYPE_2);
-                    break;
-                }
-        }
+        //int ramdom = (int)Random.Range(0.0f, 2.0f);
+        //switch(ramdom)
+        //{
+        //    case 0:
+        //        {
+        //            AddWeapon(WEAPON_TYPE.TYPE_1);
+        //            break;
+        //        }
+        //    case 1:
+        //        {
+        //            AddWeapon(WEAPON_TYPE.TYPE_2);
+        //            break;
+        //        }
+        //}
+
+        AddWeapon(WEAPON_TYPE.TYPE_1);
     }
 
     private void Update()
